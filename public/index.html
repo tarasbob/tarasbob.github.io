@@ -197,9 +197,9 @@
 
         console.log("Sending message to server:", text);
 
-        // Send the user's message to the server
+        // Send the user's message to the Netlify Function
         axios
-          .post("/chat", { message: text })
+          .post("/.netlify/functions/chat", { message: text })
           .then((response) => {
             console.log("Received response from server:", response.data);
             clearInterval(troubleshootingInterval);
