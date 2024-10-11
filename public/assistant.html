@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Golden Share Canada - Virtual Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: "Lato", sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+      }
+      .chat-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding-top: 60px;
+      }
+      .chat-header {
+        background-color: #0a75ad;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      .chat-header h1 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+      .chat-box {
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+      }
+      .messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        margin-bottom: 20px;
+      }
+      .message {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+      }
+      .message.user .message-content {
+        background-color: #e6f2f7;
+        margin-left: auto;
+        border-top-right-radius: 0;
+      }
+      .message.assistant .message-content {
+        background-color: #ff6f61;
+        color: #fff;
+        border-top-left-radius: 0;
+      }
+      .message-content {
+        max-width: 70%;
+        padding: 15px;
+        border-radius: 10px;
+        position: relative;
+        font-size: 1em;
+        line-height: 1.5;
+      }
+      .message-content::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+      .message.user .message-content::before {
+        right: -10px;
+        border-left: 10px solid #e6f2f7;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        top: 10px;
+      }
+      .message.assistant .message-content::before {
+        left: -10px;
+        border-right: 10px solid #ff6f61;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        top: 10px;
+      }
+      .input-area {
+        display: flex;
+      }
+      .input-area input {
+        flex-grow: 1;
+        padding: 15px;
+        font-size: 1em;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+      .input-area button {
+        padding: 15px 20px;
+        background-color: #0a75ad;
+        color: #fff;
+        border: none;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 0 5px 5px 0;
+      }
+      .input-area button:hover {
+        background-color: #ff6f61;
+      }
+      @media (max-width: 600px) {
+        .message-content {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-header">
+      <h1>Golden Share Virtual Assistant</h1>
+    </div>
+    <div class="chat-container">
+      <div class="chat-box">
+        <div class="messages" id="messages">
+          <!-- Messages will appear here -->
+        </div>
+        <div class="input-area">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message here..."
+            autocomplete="off"
+          />
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+    <!-- Load Axios for HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const messagesContainer = document.getElementById("messages");
+      let troubleshootingSteps = [
+        "Connecting to Golden Share Canada's AI...",
+        "Analyzing your question...",
+        "Consulting our financial expertise...",
+        "Preparing a tailored response...",
+      ];
+      let currentStep = 0;
+      let troubleshootingInterval;
+
+      function getInitialGreeting() {
+        sendMessage("INIT", true);
+      }
+
+      window.onload = function () {
+        getInitialGreeting();
+      };
+
+      function addMessage(sender, text) {
+        const messageElem = document.createElement("div");
+        messageElem.classList.add("message", sender);
+
+        const contentElem = document.createElement("div");
+        contentElem.classList.add("message-content");
+        contentElem.innerText = text;
+
+        messageElem.appendChild(contentElem);
+        messagesContainer.appendChild(messageElem);
+
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function updateTroubleshooting() {
+        if (currentStep < troubleshootingSteps.length) {
+          addMessage("assistant", troubleshootingSteps[currentStep]);
+          currentStep++;
+        } else {
+          clearInterval(troubleshootingInterval);
+        }
+      }
+
+      function sendMessage(text = null, isInitial = false) {
+        const userInput = document.getElementById("userInput");
+        if (!text && !isInitial) {
+          text = userInput.value.trim();
+          if (text === "") return;
+          addMessage("user", text);
+        }
+        userInput.value = "";
+
+        if (!isInitial) {
+          currentStep = 0;
+          troubleshootingInterval = setInterval(updateTroubleshooting, 2000);
+        }
+
+        console.log("Sending message to server:", text);
+
+        // Send the user's message to the server
+        axios
+          .post("/chat", { message: text })
+          .then((response) => {
+            console.log("Received response from server:", response.data);
+            clearInterval(troubleshootingInterval);
+            const assistantMessage = response.data.message;
+            if (!isInitial) {
+              // Remove all troubleshooting messages
+              while (
+                messagesContainer.lastChild &&
+                messagesContainer.lastChild.classList.contains("assistant")
+              ) {
+                messagesContainer.removeChild(messagesContainer.lastChild);
+              }
+            }
+            addMessage("assistant", assistantMessage);
+          })
+          .catch((error) => {
+            console.error("Error from server:", error);
+            clearInterval(troubleshootingInterval);
+            if (!isInitial) {
+              // Remove all troubleshooting messages
+              while (
+                messagesContainer.lastChild &&
+                messagesContainer.lastChild.classList.contains("assistant")
+              ) {
+                messagesContainer.removeChild(messagesContainer.lastChild);
+              }
+            }
+            addMessage(
+              "assistant",
+              "Sorry, something went wrong. Please try again later."
+            );
+          });
+      }
+
+      // Allow pressing Enter to send message
+      document
+        .getElementById("userInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
+        });
+    </script>
+  </body>
+</html>
