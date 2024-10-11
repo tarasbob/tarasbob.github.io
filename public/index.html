@@ -2,90 +2,153 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Golden Share Canada - Virtual Assistant</title>
+    <title>Golden Share Canada</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Meta Description for SEO -->
+    <meta
+      name="description"
+      content="Golden Share Canada - A modern and innovative Canadian accounting firm leveraging advanced technologies to empower entrepreneurs."
+    />
+    <!-- Stylesheet -->
     <style>
-      body {
-        font-family: "Lato", sans-serif;
-        background-color: #f1f1f1;
+      /* Reset and Basic Styles */
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
-      .chat-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding-top: 60px;
+      body {
+        font-family: "Lato", sans-serif;
+        color: #333;
+        background-color: #f9f9f9;
+        overflow-x: hidden;
       }
-      .chat-header {
-        background-color: #0a75ad;
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      /* Header Styles */
+      header {
+        background-color: rgba(10, 117, 173, 0.9);
         color: #fff;
-        padding: 20px;
-        text-align: center;
+        padding: 20px 0;
         position: fixed;
-        top: 0;
         width: 100%;
+        top: 0;
         z-index: 1000;
+        backdrop-filter: blur(10px);
       }
-      .chat-header h1 {
-        margin: 0;
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .logo {
         font-size: 1.5em;
+        font-weight: bold;
+        float: left;
+        cursor: pointer;
+      }
+      nav {
+        float: right;
+      }
+      nav a {
+        margin: 0 15px;
+        font-size: 1em;
+        color: #fff;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #ffc107;
+      }
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+        overflow: hidden;
+      }
+      /* Particles.js Container */
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #0a75ad;
+        background-size: cover;
+        background-position: 50% 50%;
+        z-index: 1;
+      }
+      /* Hero Chat Container */
+      .hero-chat-container {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
       .chat-box {
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        min-height: 500px;
         display: flex;
         flex-direction: column;
+        height: 500px;
       }
       .messages {
         flex-grow: 1;
         overflow-y: auto;
         margin-bottom: 20px;
+        padding-right: 10px;
       }
       .message {
         margin-bottom: 15px;
         display: flex;
-        align-items: flex-start;
+        align-items: flex-end;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
       }
-      .message.user .message-content {
-        background-color: #e6f2f7;
-        margin-left: auto;
-        border-top-right-radius: 0;
+      .message.user {
+        justify-content: flex-end;
       }
-      .message.assistant .message-content {
-        background-color: #ff6f61;
-        color: #fff;
-        border-top-left-radius: 0;
+      .message.assistant {
+        justify-content: flex-start;
       }
       .message-content {
         max-width: 70%;
         padding: 15px;
-        border-radius: 10px;
+        border-radius: 20px;
         position: relative;
         font-size: 1em;
         line-height: 1.5;
+        background-color: #ffffff;
+        color: #333;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
       }
-      .message-content::before {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 0;
+      .message.user .message-content {
+        background-color: #e0f7fa;
+        border-bottom-right-radius: 0;
       }
-      .message.user .message-content::before {
-        right: -10px;
-        border-left: 10px solid #e6f2f7;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        top: 10px;
+      .message.assistant .message-content {
+        background-color: #ffffff;
+        border-bottom-left-radius: 0;
       }
-      .message.assistant .message-content::before {
-        left: -10px;
-        border-right: 10px solid #ff6f61;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        top: 10px;
+      .message.assistant .avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-image: url("https://i.imgur.com/6VBx3io.png"); /* Assistant Avatar */
+        background-size: cover;
+      }
+      .message.user .avatar {
+        display: none;
       }
       .input-area {
         display: flex;
@@ -95,8 +158,9 @@
         padding: 15px;
         font-size: 1em;
         border: none;
-        border-radius: 5px 0 0 5px;
+        border-radius: 25px 0 0 25px;
         outline: none;
+        background-color: rgba(255, 255, 255, 0.8);
       }
       .input-area button {
         padding: 15px 20px;
@@ -105,62 +169,433 @@
         border: none;
         font-size: 1em;
         cursor: pointer;
-        border-radius: 0 5px 5px 0;
+        border-radius: 0 25px 25px 0;
       }
       .input-area button:hover {
-        background-color: #ff6f61;
+        background-color: #ffc107;
+      }
+      /* Typing Indicator */
+      .typing-indicator {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+      .typing-indicator .avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-image: url("https://i.imgur.com/6VBx3io.png");
+        background-size: cover;
+      }
+      .typing-dots {
+        display: flex;
+      }
+      .typing-dots span {
+        width: 8px;
+        height: 8px;
+        background-color: #ccc;
+        border-radius: 50%;
+        margin-right: 5px;
+        animation: blink 1.4s infinite both;
+      }
+      .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 0.2;
+        }
+        20% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.2;
+        }
+      }
+      /* Fade-in Animation for Messages */
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .message-content {
+          max-width: 85%;
+        }
+        .hero-chat-container {
+          padding: 15px;
+        }
       }
       @media (max-width: 600px) {
         .message-content {
           max-width: 100%;
         }
+        .input-area input {
+          padding: 10px;
+        }
+        .input-area button {
+          padding: 10px 15px;
+        }
       }
     </style>
+    <!-- Load AOS Library CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="chat-header">
-      <h1>Golden Share Virtual Assistant</h1>
-    </div>
-    <div class="chat-container">
-      <div class="chat-box">
-        <div class="messages" id="messages">
-          <!-- Messages will appear here -->
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="logo" onclick="scrollToSection('top')">
+          Golden Share Canada
         </div>
-        <div class="input-area">
-          <input
-            type="text"
-            id="userInput"
-            placeholder="Type your message here..."
-            autocomplete="off"
-          />
-          <button onclick="sendMessage()">Send</button>
+        <nav>
+          <a href="#" onclick="scrollToSection('hero')">Home</a>
+          <a href="#" onclick="scrollToSection('mission')">Our Mission</a>
+          <a href="#" onclick="scrollToSection('expertise')">Our Expertise</a>
+          <a href="#" onclick="scrollToSection('how')">How It Works</a>
+          <a href="#" onclick="scrollToSection('technology')">Technology</a>
+          <a href="#" onclick="scrollToSection('contact')">Contact Us</a>
+        </nav>
+      </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <!-- Particles.js Container -->
+      <div id="particles-js"></div>
+      <div class="hero-chat-container">
+        <div class="chat-box">
+          <div class="messages" id="messages">
+            <!-- Messages will appear here -->
+          </div>
+          <div class="input-area">
+            <input
+              type="text"
+              id="userInput"
+              placeholder="Type your message here..."
+              autocomplete="off"
+            />
+            <button onclick="sendMessage()">Send</button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+    <!-- Mission Section -->
+    <section class="mission-section parallax" id="mission">
+      <div class="mission-overlay"></div>
+      <div class="mission-content">
+        <h2 data-aos="fade-down">Our Mission</h2>
+        <div class="mission-cards">
+          <!-- Card 1 -->
+          <div class="mission-card" data-aos="flip-left">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Honoring Entrepreneurs</h3>
+            <p>
+              At Golden Share Canada, we honor <span>entrepreneurs</span> as the
+              visionary heroes propelling our nation's progress—fueling
+              innovation, creating opportunities, and transforming industries.
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div class="mission-card" data-aos="flip-left" data-aos-delay="100">
+            <i class="fas fa-cogs"></i>
+            <h3>Empowering You</h3>
+            <p>
+              Leveraging our profound expertise in <span>taxation</span>,
+              advanced accounting technologies, <span>cloud solutions</span>,
+              and industry-specific financial strategies, we transform complex
+              financial data into clear, actionable insights.
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div class="mission-card" data-aos="flip-left" data-aos-delay="200">
+            <i class="fas fa-handshake"></i>
+            <h3>Your Trusted Partner</h3>
+            <p>
+              As your <span>trusted partner</span>, Golden Share Canada provides
+              you with the confidence to make informed decisions, secure in the
+              knowledge that your finances are managed by consummate
+              professionals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Our Expertise Section -->
+    <section class="expertise-section" id="expertise">
+      <div class="expertise-content">
+        <h2 data-aos="fade-down">Our Expertise</h2>
+        <div class="expertise-cards">
+          <!-- Expertise Card 1 -->
+          <div class="expertise-card" data-aos="zoom-in">
+            <i class="fas fa-building"></i>
+            <h3>Corporate Tax</h3>
+            <p>
+              Streamline your corporate tax processes with our expert guidance
+              on CIT, GST/HST, and tax credits, including R&D incentives.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+          <!-- Expertise Card 2 -->
+          <div class="expertise-card" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-book"></i>
+            <h3>Bookkeeping &amp; Accounting</h3>
+            <p>
+              Experience effortless, paperless, cloud-based solutions tailored
+              to your business needs for efficient bookkeeping and accounting.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+          <!-- Expertise Card 3 -->
+          <div class="expertise-card" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-money-check-alt"></i>
+            <h3>Payroll Management</h3>
+            <p>
+              Benefit from seamless payroll services, from initial setup to
+              regular processing, ensuring accuracy and compliance.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+          <!-- Expertise Card 4 -->
+          <div class="expertise-card" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-user-tie"></i>
+            <h3>Individual Taxes</h3>
+            <p>
+              Receive expert personal tax filing and consulting services for
+              individuals and business owners, maximizing your returns.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+          <!-- Expertise Card 5 -->
+          <div class="expertise-card" data-aos="zoom-in" data-aos-delay="400">
+            <i class="fas fa-briefcase"></i>
+            <h3>Company Formation</h3>
+            <p>
+              Start your business on the right foot with our comprehensive
+              company formation services, guiding you every step of the way.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+          <!-- Expertise Card 6 -->
+          <div class="expertise-card" data-aos="zoom-in" data-aos-delay="500">
+            <i class="fas fa-chart-pie"></i>
+            <h3>Accounting &amp; Reporting Setup</h3>
+            <p>
+              Implement QuickBooks Online, ensure CRA compliance, and integrate
+              payroll for accurate and timely financial reporting.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- How It Works Section -->
+    <section class="how-section" id="how">
+      <div class="how-content">
+        <h2 data-aos="fade-down">How It Works</h2>
+        <div class="how-steps">
+          <!-- Step 1 -->
+          <div class="how-step" data-aos="fade-up">
+            <i class="fas fa-phone-alt"></i>
+            <h3>1. Contact Us</h3>
+            <p>
+              Reach out using your preferred method—fill out our form, give us a
+              call, or schedule a callback.
+            </p>
+          </div>
+          <!-- Step 2 -->
+          <div class="how-step" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-comments"></i>
+            <h3>2. Get a Free Consultation</h3>
+            <p>
+              Our team will connect with you to discuss your specific needs and
+              tailor our services accordingly.
+            </p>
+          </div>
+          <!-- Step 3 -->
+          <div class="how-step" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-chart-line"></i>
+            <h3>3. Grow Your Business</h3>
+            <p>
+              Focus on your business growth while we handle your financial
+              management seamlessly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Technology Section -->
+    <section class="technology-section" id="technology">
+      <div class="technology-content">
+        <h2 data-aos="fade-down">Innovative Technology</h2>
+        <div class="technology-cards">
+          <!-- Technology Card 1 -->
+          <div class="technology-card" data-aos="fade-right">
+            <i class="fas fa-robot"></i>
+            <h3>AI-Powered Analytics</h3>
+            <p>
+              Harnessing AI for predictive financial modeling to stay ahead with
+              forecasts and trend analysis.
+            </p>
+          </div>
+          <!-- Technology Card 2 -->
+          <div
+            class="technology-card"
+            data-aos="fade-left"
+            data-aos-delay="100"
+          >
+            <i class="fas fa-lock"></i>
+            <h3>Secure Data Handling</h3>
+            <p>
+              Top-tier security measures to protect your information; your
+              data's security is our utmost priority.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-content">
+        <p>&copy; 2023 Golden Share Canada. All rights reserved.</p>
+        <p>
+          Contact us at
+          <a href="mailto:info@goldensharecanada.ca"
+            >info@goldensharecanada.ca</a
+          >
+        </p>
+        <div class="social-icons">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </footer>
+    <!-- JavaScript -->
+    <!-- Load Particles.js Library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- Load FontAwesome for Icons -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Load AOS Library JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Load GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <!-- Load Axios for HTTP requests -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Initialize AOS -->
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    </script>
+    <script>
+      // Initialize Particles.js
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+          },
+          color: {
+            value: "#ffffff",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 3,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+          },
+          modes: {
+            grab: {
+              distance: 200,
+              line_linked: {
+                opacity: 0.5,
+              },
+            },
+            push: {
+              particles_nb: 4,
+            },
+          },
+        },
+        retina_detect: true,
+      });
+      // Scroll to Section Function
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      }
+      // Easter Egg on Logo Click
+      document.querySelector(".logo").addEventListener("click", function () {
+        alert("You found the golden share!");
+      });
+    </script>
+    <!-- Chat Functionality -->
     <script>
       const messagesContainer = document.getElementById("messages");
-      let troubleshootingSteps = [
-        "Connecting to Golden Share Canada's AI...",
-        "Analyzing your question...",
-        "Consulting our financial expertise...",
-        "Preparing a tailored response...",
-      ];
-      let currentStep = 0;
-      let troubleshootingInterval;
+      let typingIndicator;
+      let assistantAvatar = "https://i.imgur.com/6VBx3io.png"; // Replace with your assistant avatar image URL
 
-      function getInitialGreeting() {
-        sendMessage("INIT", true);
-      }
-
+      // Initial Welcome Message
       window.onload = function () {
-        getInitialGreeting();
+        addMessage(
+          "assistant",
+          "Hello! I'm your virtual assistant. How can I assist you today?"
+        );
       };
 
       function addMessage(sender, text) {
         const messageElem = document.createElement("div");
         messageElem.classList.add("message", sender);
+
+        if (sender === "assistant") {
+          const avatarElem = document.createElement("div");
+          avatarElem.classList.add("avatar");
+          messageElem.appendChild(avatarElem);
+        }
 
         const contentElem = document.createElement("div");
         contentElem.classList.add("message-content");
@@ -169,64 +604,69 @@
         messageElem.appendChild(contentElem);
         messagesContainer.appendChild(messageElem);
 
+        // Scroll to the bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Animate the message appearance
+        gsap.fromTo(
+          messageElem,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
+        );
+      }
+
+      function showTypingIndicator() {
+        typingIndicator = document.createElement("div");
+        typingIndicator.classList.add("typing-indicator");
+
+        const avatarElem = document.createElement("div");
+        avatarElem.classList.add("avatar");
+
+        const dotsElem = document.createElement("div");
+        dotsElem.classList.add("typing-dots");
+        dotsElem.innerHTML = "<span></span><span></span><span></span>";
+
+        typingIndicator.appendChild(avatarElem);
+        typingIndicator.appendChild(dotsElem);
+        messagesContainer.appendChild(typingIndicator);
+
+        // Scroll to the bottom
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }
 
-      function updateTroubleshooting() {
-        if (currentStep < troubleshootingSteps.length) {
-          addMessage("assistant", troubleshootingSteps[currentStep]);
-          currentStep++;
-        } else {
-          clearInterval(troubleshootingInterval);
+      function removeTypingIndicator() {
+        if (typingIndicator) {
+          messagesContainer.removeChild(typingIndicator);
+          typingIndicator = null;
         }
       }
 
-      function sendMessage(text = null, isInitial = false) {
+      function sendMessage() {
         const userInput = document.getElementById("userInput");
-        if (!text && !isInitial) {
-          text = userInput.value.trim();
-          if (text === "") return;
-          addMessage("user", text);
-        }
+        let text = userInput.value.trim();
+        if (text === "") return;
+        addMessage("user", text);
         userInput.value = "";
 
-        if (!isInitial) {
-          currentStep = 0;
-          troubleshootingInterval = setInterval(updateTroubleshooting, 2000);
-        }
+        // Show typing indicator
+        showTypingIndicator();
 
-        console.log("Sending message to server:", text);
-
-        // Send the user's message to the Netlify Function
+        // Send the user's message to your server or API endpoint
         axios
           .post("/.netlify/functions/chat", { message: text })
           .then((response) => {
-            console.log("Received response from server:", response.data);
-            clearInterval(troubleshootingInterval);
+            // Remove typing indicator
+            removeTypingIndicator();
+
             const assistantMessage = response.data.message;
-            if (!isInitial) {
-              // Remove all troubleshooting messages
-              while (
-                messagesContainer.lastChild &&
-                messagesContainer.lastChild.classList.contains("assistant")
-              ) {
-                messagesContainer.removeChild(messagesContainer.lastChild);
-              }
-            }
             addMessage("assistant", assistantMessage);
           })
           .catch((error) => {
             console.error("Error from server:", error);
-            clearInterval(troubleshootingInterval);
-            if (!isInitial) {
-              // Remove all troubleshooting messages
-              while (
-                messagesContainer.lastChild &&
-                messagesContainer.lastChild.classList.contains("assistant")
-              ) {
-                messagesContainer.removeChild(messagesContainer.lastChild);
-              }
-            }
+
+            // Remove typing indicator
+            removeTypingIndicator();
+
             addMessage(
               "assistant",
               "Sorry, something went wrong. Please try again later."
