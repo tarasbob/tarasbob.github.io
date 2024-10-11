@@ -60,7 +60,7 @@
         transition: color 0.3s ease;
       }
       nav a:hover {
-        color: #ffc107;
+        color: #ff6f61;
       }
       /* Hero Section */
       .hero {
@@ -94,12 +94,12 @@
         background-color: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         backdrop-filter: blur(5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
       .chat-box {
         display: flex;
         flex-direction: column;
-        height: 500px;
+        height: 60vh;
+        max-height: 600px;
       }
       .messages {
         flex-grow: 1;
@@ -110,15 +110,13 @@
       .message {
         margin-bottom: 15px;
         display: flex;
-        align-items: flex-end;
-        opacity: 0;
-        animation: fadeIn 0.5s forwards;
-      }
-      .message.user {
-        justify-content: flex-end;
+        align-items: flex-start;
       }
       .message.assistant {
-        justify-content: flex-start;
+        flex-direction: row;
+      }
+      .message.user {
+        flex-direction: row-reverse;
       }
       .message-content {
         max-width: 70%;
@@ -127,28 +125,17 @@
         position: relative;
         font-size: 1em;
         line-height: 1.5;
-        background-color: #ffffff;
-        color: #333;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      }
-      .message.user .message-content {
-        background-color: #e0f7fa;
-        border-bottom-right-radius: 0;
+        opacity: 0;
       }
       .message.assistant .message-content {
-        background-color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
         border-bottom-left-radius: 0;
       }
-      .message.assistant .avatar {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-        border-radius: 50%;
-        background-image: url("https://i.imgur.com/6VBx3io.png"); /* Assistant Avatar */
-        background-size: cover;
-      }
-      .message.user .avatar {
-        display: none;
+      .message.user .message-content {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #333;
+        border-bottom-right-radius: 0;
       }
       .input-area {
         display: flex;
@@ -158,53 +145,67 @@
         padding: 15px;
         font-size: 1em;
         border: none;
-        border-radius: 25px 0 0 25px;
+        border-radius: 30px 0 0 30px;
         outline: none;
         background-color: rgba(255, 255, 255, 0.8);
+        color: #333;
       }
       .input-area button {
         padding: 15px 20px;
-        background-color: #0a75ad;
-        color: #fff;
+        background-color: #fff;
+        color: #0a75ad;
         border: none;
         font-size: 1em;
         cursor: pointer;
-        border-radius: 0 25px 25px 0;
+        border-radius: 0 30px 30px 0;
       }
       .input-area button:hover {
-        background-color: #ffc107;
+        background-color: #ff6f61;
+        color: #fff;
+      }
+      /* Fade-in Animation for Messages */
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* Assistant Avatar */
+      .assistant-avatar {
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0a75ad;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      /* User Avatar (Hidden for simplicity) */
+      .user-avatar {
+        display: none;
       }
       /* Typing Indicator */
       .typing-indicator {
         display: flex;
         align-items: center;
         margin-bottom: 15px;
-        opacity: 0;
-        animation: fadeIn 0.5s forwards;
       }
-      .typing-indicator .avatar {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-        border-radius: 50%;
-        background-image: url("https://i.imgur.com/6VBx3io.png");
-        background-size: cover;
-      }
-      .typing-dots {
-        display: flex;
-      }
-      .typing-dots span {
+      .typing-indicator .dot {
         width: 8px;
         height: 8px;
-        background-color: #ccc;
+        background-color: #fff;
         border-radius: 50%;
         margin-right: 5px;
-        animation: blink 1.4s infinite both;
+        animation: blink 1s infinite;
       }
-      .typing-dots span:nth-child(2) {
+      .typing-indicator .dot:nth-child(2) {
         animation-delay: 0.2s;
       }
-      .typing-dots span:nth-child(3) {
+      .typing-indicator .dot:nth-child(3) {
         animation-delay: 0.4s;
       }
       @keyframes blink {
@@ -218,30 +219,14 @@
           opacity: 0.2;
         }
       }
-      /* Fade-in Animation for Messages */
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
       /* Responsive Styles */
       @media (max-width: 768px) {
         .message-content {
-          max-width: 85%;
-        }
-        .hero-chat-container {
-          padding: 15px;
-        }
-      }
-      @media (max-width: 600px) {
-        .message-content {
           max-width: 100%;
         }
-        .input-area input {
-          padding: 10px;
-        }
-        .input-area button {
-          padding: 10px 15px;
+        .assistant-avatar,
+        .user-avatar {
+          display: none;
         }
       }
     </style>
@@ -272,6 +257,7 @@
     <section class="hero" id="hero">
       <!-- Particles.js Container -->
       <div id="particles-js"></div>
+      <!-- Hero Chat Container -->
       <div class="hero-chat-container">
         <div class="chat-box">
           <div class="messages" id="messages">
@@ -463,7 +449,6 @@
         </div>
       </div>
     </section>
-    <!-- Footer -->
     <footer id="contact">
       <div class="footer-content">
         <p>&copy; 2023 Golden Share Canada. All rights reserved.</p>
@@ -568,84 +553,84 @@
       function scrollToSection(id) {
         document.getElementById(id).scrollIntoView({ behavior: "smooth" });
       }
-      // Easter Egg on Logo Click
-      document.querySelector(".logo").addEventListener("click", function () {
-        alert("You found the golden share!");
-      });
-    </script>
-    <!-- Chat Functionality -->
-    <script>
+      // Chat Functionality
       const messagesContainer = document.getElementById("messages");
-      let typingIndicator;
-      let assistantAvatar = "https://i.imgur.com/6VBx3io.png"; // Replace with your assistant avatar image URL
 
-      // Initial Welcome Message
-      window.onload = function () {
-        addMessage(
-          "assistant",
-          "Hello! I'm your virtual assistant. How can I assist you today?"
-        );
-      };
-
+      // Function to add messages to the chat
       function addMessage(sender, text) {
         const messageElem = document.createElement("div");
         messageElem.classList.add("message", sender);
 
+        // Avatar
+        const avatarElem = document.createElement("div");
+        avatarElem.classList.add(
+          sender === "assistant" ? "assistant-avatar" : "user-avatar"
+        );
         if (sender === "assistant") {
-          const avatarElem = document.createElement("div");
-          avatarElem.classList.add("avatar");
-          messageElem.appendChild(avatarElem);
+          avatarElem.innerText = "A";
         }
 
         const contentElem = document.createElement("div");
         contentElem.classList.add("message-content");
         contentElem.innerText = text;
 
+        messageElem.appendChild(avatarElem);
         messageElem.appendChild(contentElem);
         messagesContainer.appendChild(messageElem);
 
-        // Scroll to the bottom
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
         // Animate the message appearance
         gsap.fromTo(
-          messageElem,
-          { opacity: 0, y: 50 },
+          contentElem,
+          { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
         );
-      }
 
-      function showTypingIndicator() {
-        typingIndicator = document.createElement("div");
-        typingIndicator.classList.add("typing-indicator");
-
-        const avatarElem = document.createElement("div");
-        avatarElem.classList.add("avatar");
-
-        const dotsElem = document.createElement("div");
-        dotsElem.classList.add("typing-dots");
-        dotsElem.innerHTML = "<span></span><span></span><span></span>";
-
-        typingIndicator.appendChild(avatarElem);
-        typingIndicator.appendChild(dotsElem);
-        messagesContainer.appendChild(typingIndicator);
-
-        // Scroll to the bottom
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }
 
-      function removeTypingIndicator() {
-        if (typingIndicator) {
-          messagesContainer.removeChild(typingIndicator);
-          typingIndicator = null;
+      // Typing Indicator
+      function showTypingIndicator() {
+        const typingElem = document.createElement("div");
+        typingElem.classList.add("typing-indicator", "assistant");
+        typingElem.id = "typing-indicator";
+
+        const avatarElem = document.createElement("div");
+        avatarElem.classList.add("assistant-avatar");
+        avatarElem.innerText = "A";
+
+        const dotsElem = document.createElement("div");
+        dotsElem.classList.add("message-content");
+        dotsElem.style.backgroundColor = "transparent";
+        dotsElem.style.boxShadow = "none";
+        dotsElem.style.display = "flex";
+
+        for (let i = 0; i < 3; i++) {
+          const dot = document.createElement("div");
+          dot.classList.add("dot");
+          dotsElem.appendChild(dot);
+        }
+
+        typingElem.appendChild(avatarElem);
+        typingElem.appendChild(dotsElem);
+        messagesContainer.appendChild(typingElem);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function hideTypingIndicator() {
+        const typingElem = document.getElementById("typing-indicator");
+        if (typingElem) {
+          messagesContainer.removeChild(typingElem);
         }
       }
 
-      function sendMessage() {
+      // Send Message Function
+      function sendMessage(text = null, isInitial = false) {
         const userInput = document.getElementById("userInput");
-        let text = userInput.value.trim();
-        if (text === "") return;
-        addMessage("user", text);
+        if (!text && !isInitial) {
+          text = userInput.value.trim();
+          if (text === "") return;
+          addMessage("user", text);
+        }
         userInput.value = "";
 
         // Show typing indicator
@@ -655,24 +640,27 @@
         axios
           .post("/.netlify/functions/chat", { message: text })
           .then((response) => {
-            // Remove typing indicator
-            removeTypingIndicator();
+            // Hide typing indicator
+            hideTypingIndicator();
 
             const assistantMessage = response.data.message;
             addMessage("assistant", assistantMessage);
           })
           .catch((error) => {
             console.error("Error from server:", error);
-
-            // Remove typing indicator
-            removeTypingIndicator();
-
+            hideTypingIndicator();
             addMessage(
               "assistant",
               "Sorry, something went wrong. Please try again later."
             );
           });
       }
+
+      // Initial Greeting from Assistant
+      window.onload = function () {
+        // Trigger initial assistant message
+        sendMessage("INIT", true);
+      };
 
       // Allow pressing Enter to send message
       document
