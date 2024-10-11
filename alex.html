@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Golden Share Canada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="Golden Share Canada - A modern and innovative Canadian accounting firm leveraging advanced technologies to empower entrepreneurs.">
+    <!-- Stylesheet -->
+    <style>
+        /* Reset and Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header Styles */
+        header {
+            background-color: rgba(10, 117, 173, 0.9);
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            float: left;
+        }
+        nav {
+            float: right;
+        }
+        nav a {
+            margin: 0 15px;
+            font-size: 1em;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ff6f61;
+        }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+        /* Particles.js Container */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #0a75ad;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .cta-button {
+            background-color: #ff6f61;
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #ff3b2f;
+        }
+        /* Mission Section */
+        .mission-section {
+            background-color: #e6f2f7;
+            padding: 60px 20px;
+        }
+        .mission-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .mission-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #0a75ad;
+        }
+        .mission-paragraph {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+        .mission-paragraph:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+        .mission-paragraph:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+        .mission-paragraph:nth-child(3) {
+            animation-delay: 0.9s;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Main Content Styles */
+        main {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+        .section {
+            max-width: 1200px;
+            margin: 0 auto 50px auto;
+        }
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #0a75ad;
+            text-align: center;
+        }
+        .services, .technology {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .service-item, .tech-item {
+            background-color: #fff;
+            width: 48%;
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-item:hover, .tech-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        .service-item h3, .tech-item h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #ff6f61;
+        }
+        .service-item p, .tech-item p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 111, 97, 0.95);
+            color: #fff;
+            transition: left 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .service-item:hover .overlay, .tech-item:hover .overlay {
+            left: 0;
+        }
+        .overlay p {
+            font-size: 1em;
+        }
+        /* Footer Styles */
+        footer {
+            background-color: #0a75ad;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-content p {
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #ff6f61;
+        }
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .service-item, .tech-item {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            nav {
+                float: none;
+                text-align: center;
+                margin-top: 10px;
+            }
+            .logo {
+                float: none;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .mission-content h2 {
+                font-size: 2em;
+            }
+            .mission-paragraph {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">Golden Share Canada</div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#mission">Our Mission</a>
+                <a href="#services">Services</a>
+                <a href="#technology">Technology</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Particles.js Container -->
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1>Empowering Visionary Entrepreneurs</h1>
+            <p>Expertly managing your accounting and financial needs with precision and reliability.</p>
+            <button class="cta-button" onclick="scrollToSection('mission')">Learn More About Us</button>
+        </div>
+    </section>
+    <!-- Mission Section -->
+    <section class="mission-section" id="mission">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p class="mission-paragraph">
+                At Golden Share Canada, we honor entrepreneurs as the visionary heroes propelling our nation's progress—fueling innovation, creating opportunities, and transforming industries. Our unwavering mission is to empower you by expertly managing all your accounting and financial needs with absolute precision and reliability.
+            </p>
+            <p class="mission-paragraph">
+                Leveraging our profound expertise in taxation, advanced accounting technologies, cloud solutions, and industry-specific financial strategies, we transform complex financial data into clear, actionable insights. We ensure full compliance with ever-evolving regulations, allowing you to dedicate your energy entirely to your core mission and business growth.
+            </p>
+            <p class="mission-paragraph">
+                As your trusted partner, Golden Share Canada provides you with the confidence to make informed decisions, secure in the knowledge that your finances are managed by consummate professionals. Together, we will forge a stronger future—enabling you to focus on what truly matters: amplifying your impact and achieving your entrepreneurial vision.
+            </p>
+        </div>
+    </section>
+    <!-- Main Content -->
+    <main>
+        <!-- Services Section -->
+        <div class="section" id="services">
+            <h2>Our Services</h2>
+            <div class="services">
+                <div class="service-item">
+                    <h3>Advanced Taxation</h3>
+                    <p>Leveraging expertise to optimize your tax strategies.</p>
+                    <div class="overlay">
+                        <p>Our taxation services ensure compliance and maximized returns.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <h3>Cloud Accounting</h3>
+                    <p>Real-time access to your financial data anywhere, anytime.</p>
+                    <div class="overlay">
+                        <p>Utilize cutting-edge cloud solutions for seamless accounting.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <h3>Financial Insights</h3>
+                    <p>Transforming data into actionable business strategies.</p>
+                    <div class="overlay">
+                        <p>Get clear insights to drive informed decision-making.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <h3>Compliance Assurance</h3>
+                    <p>Staying ahead with evolving regulations and standards.</p>
+                    <div class="overlay">
+                        <p>We keep you compliant, so you can focus on growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Technology Section -->
+        <div class="section" id="technology">
+            <h2>Innovative Technology</h2>
+            <div class="technology">
+                <div class="tech-item">
+                    <h3>AI-Powered Analytics</h3>
+                    <p>Harnessing AI for predictive financial modeling.</p>
+                    <div class="overlay">
+                        <p>Stay ahead with forecasts and trend analysis.</p>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <h3>Secure Data Handling</h3>
+                    <p>Top-tier security measures to protect your information.</p>
+                    <div class="overlay">
+                        <p>Your data's security is our utmost priority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <p>&copy; 2023 Golden Share Canada. All rights reserved.</p>
+            <p>Contact us at <a href="mailto:info@goldensharecanada.ca">info@goldensharecanada.ca</a></p>
+            <div class="social-icons">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <!-- Load Particles.js Library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- Load FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Load Waypoints for Scroll Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Initialize Particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    }
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200,
+                        "line_linked": {
+                            "opacity": 0.5
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        // Scroll to Section Function
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+        // Easter Egg on Logo Click
+        document.querySelector('.logo').addEventListener('click', function() {
+            alert('You found the golden share!');
+        });
+        // Animate Mission Paragraphs on Scroll
+        $(document).ready(function() {
+            $('.mission-paragraph').each(function() {
+                var element = this;
+                var waypoint = new Waypoint({
+                    element: element,
+                    handler: function() {
+                        $(element).addClass('animated');
+                    },
+                    offset: '80%'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
