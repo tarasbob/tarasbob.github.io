@@ -72,6 +72,7 @@
         color: #fff;
         text-align: center;
         overflow: hidden;
+        flex-direction: column;
       }
       /* Particles.js Container */
       #particles-js {
@@ -82,6 +83,25 @@
         background-size: cover;
         background-position: 50% 50%;
         z-index: 1;
+      }
+      /* Hero Content */
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin-bottom: 30px;
+      }
+      .hero-content h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        color: #fff;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      .hero-content p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: #fff;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
       }
       /* Hero Chat Container */
       .hero-chat-container {
@@ -94,6 +114,20 @@
         background-color: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         backdrop-filter: blur(5px);
+      }
+      .hero-chat-container.thinking {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        100% {
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
       }
       .chat-box {
         display: flex;
@@ -131,11 +165,13 @@
         background-color: rgba(255, 255, 255, 0.2);
         color: #fff;
         border-bottom-left-radius: 0;
+        text-align: left;
       }
       .message.user .message-content {
         background-color: rgba(255, 255, 255, 0.8);
         color: #333;
         border-bottom-right-radius: 0;
+        text-align: right;
       }
       .input-area {
         display: flex;
@@ -642,6 +678,14 @@
     <section class="hero" id="hero">
       <!-- Particles.js Container -->
       <div id="particles-js"></div>
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <h1>Empowering Visionary Entrepreneurs</h1>
+        <p>
+          Expertly managing your accounting and financial needs with precision
+          and reliability.
+        </p>
+      </div>
       <!-- Hero Chat Container -->
       <div class="hero-chat-container">
         <div class="chat-box">
@@ -942,6 +986,7 @@
       }
       // Chat Functionality
       const messagesContainer = document.getElementById("messages");
+      const chatContainer = document.querySelector(".hero-chat-container");
 
       // Function to add messages to the chat
       function addMessage(sender, text) {
@@ -990,6 +1035,7 @@
         dotsElem.style.backgroundColor = "transparent";
         dotsElem.style.boxShadow = "none";
         dotsElem.style.display = "flex";
+        dotsElem.style.alignItems = "center";
 
         for (let i = 0; i < 3; i++) {
           const dot = document.createElement("div");
@@ -997,10 +1043,17 @@
           dotsElem.appendChild(dot);
         }
 
-        typingElem.appendChild(avatarElem);
-        typingElem.appendChild(dotsElem);
+        const messageElem = document.createElement("div");
+        messageElem.classList.add("message", "assistant");
+        messageElem.appendChild(avatarElem);
+        messageElem.appendChild(dotsElem);
+
+        typingElem.appendChild(messageElem);
         messagesContainer.appendChild(typingElem);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Add 'thinking' class to chat container for pulsating effect
+        chatContainer.classList.add("thinking");
       }
 
       function hideTypingIndicator() {
@@ -1008,6 +1061,8 @@
         if (typingElem) {
           messagesContainer.removeChild(typingElem);
         }
+        // Remove 'thinking' class to stop pulsating effect
+        chatContainer.classList.remove("thinking");
       }
 
       // Send Message Function
