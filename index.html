@@ -29,7 +29,8 @@
             background-color: rgba(10, 117, 173, 0.9);
             color: #fff;
             padding: 20px 0;
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
@@ -44,6 +45,7 @@
             font-size: 1.5em;
             font-weight: bold;
             float: left;
+            cursor: pointer;
         }
         nav {
             float: right;
@@ -87,11 +89,13 @@
             font-size: 3em;
             margin-bottom: 20px;
             text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s forwards;
         }
         .hero-content p {
             font-size: 1.2em;
             margin-bottom: 30px;
             text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s forwards;
         }
         .cta-button {
             background-color: #ff6f61;
@@ -102,24 +106,69 @@
             border-radius: 5px;
             color: #fff;
             transition: background-color 0.3s ease;
+            animation: fadeInUp 1s forwards;
         }
         .cta-button:hover {
             background-color: #ff3b2f;
         }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Parallax Sections */
+        .parallax {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
         /* Mission Section */
         .mission-section {
-            background-color: #f9f9f9;
+            background-image: url('https://source.unsplash.com/1600x900/?business,teamwork');
+            background-size: cover;
+            background-position: center;
             padding: 60px 20px;
+            color: #fff;
+            position: relative;
+        }
+        .mission-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 117, 173, 0.8);
+            z-index: 1;
         }
         .mission-content {
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
         .mission-content h2 {
             font-size: 2.5em;
             margin-bottom: 40px;
-            color: #0a75ad;
+            color: #fff;
         }
         .mission-cards {
             display: flex;
@@ -127,7 +176,7 @@
             justify-content: space-between;
         }
         .mission-card {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9);
             width: 30%;
             margin-bottom: 40px;
             padding: 30px 20px;
@@ -137,7 +186,7 @@
             position: relative;
         }
         .mission-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
             box-shadow: 0 15px 25px rgba(0,0,0,0.2);
         }
         .mission-card i {
@@ -152,34 +201,54 @@
         }
         .mission-card p {
             font-size: 1em;
-            color: #666;
+            color: #333;
             line-height: 1.6;
         }
         .mission-card p span {
             color: #ff6f61;
             font-weight: bold;
         }
-        /* Services Section */
-        .services-section {
+        /* Our Expertise Section */
+        .expertise-section {
             background-color: #e6f2f7;
             padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
         }
-        .services-content {
+        /* SVG Background */
+        .expertise-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg%20width%3D%22100%25%22%20height%3D%22100%25%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22><rect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22none%22%20/><path%20d%3D%22M0%2C100%20C150%2C200%20350%2C0%20500%2C100%20L500%2C00%20L0%2C0Z%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.2%22%20/><path%20d%3D%22M0%2C50%20C150%2C150%20350%2C-50%20500%2C50%20L500%2C00%20L0%2C0Z%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.2%22%20/></svg>') repeat;
+            animation: svgBackground 20s linear infinite;
+            z-index: 1;
+        }
+        @keyframes svgBackground {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 0; }
+        }
+        .expertise-content {
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
-        .services-content h2 {
+        .expertise-content h2 {
             font-size: 2.5em;
             margin-bottom: 40px;
             color: #0a75ad;
         }
-        .services-cards {
+        .expertise-cards {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        .service-card {
+        .expertise-card {
             background-color: #fff;
             width: 30%;
             margin-bottom: 40px;
@@ -189,34 +258,104 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
         }
-        .service-card:hover {
-            transform: translateY(-10px);
+        .expertise-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
             box-shadow: 0 15px 25px rgba(0,0,0,0.2);
         }
-        .service-card i {
+        .expertise-card i {
             font-size: 3em;
             color: #ff6f61;
             margin-bottom: 20px;
         }
-        .service-card h3 {
+        .expertise-card h3 {
             font-size: 1.5em;
             margin-bottom: 15px;
             color: #0a75ad;
         }
-        .service-card p {
+        .expertise-card p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .expertise-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0a75ad;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .expertise-card a:hover {
+            background-color: #ff6f61;
+        }
+        /* How It Works Section */
+        .how-section {
+            background-color: #f9f9f9;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .how-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .how-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #0a75ad;
+        }
+        .how-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .how-step {
+            background-color: #fff;
+            width: 30%;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .how-step:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        .how-step i {
+            font-size: 3em;
+            color: #ff6f61;
+            margin-bottom: 20px;
+        }
+        .how-step h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #0a75ad;
+        }
+        .how-step p {
             font-size: 1em;
             color: #666;
             line-height: 1.6;
         }
         /* Technology Section */
         .technology-section {
-            background-color: #f9f9f9;
+            background-color: #e6f2f7;
             padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
         }
         .technology-content {
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
         .technology-content h2 {
             font-size: 2.5em;
@@ -239,7 +378,7 @@
             position: relative;
         }
         .technology-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
             box-shadow: 0 15px 25px rgba(0,0,0,0.2);
         }
         .technology-card i {
@@ -259,9 +398,16 @@
         }
         /* Footer Styles */
         footer {
-            background-color: #0a75ad;
+            background: linear-gradient(-45deg, #0a75ad, #ff6f61, #0a75ad);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: #fff;
             padding: 40px 20px;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .footer-content {
             max-width: 1200px;
@@ -279,11 +425,11 @@
             transition: color 0.3s ease;
         }
         .social-icons a:hover {
-            color: #ff6f61;
+            color: #333;
         }
         /* Responsive Styles */
         @media (max-width: 992px) {
-            .mission-card, .service-card {
+            .mission-card, .expertise-card, .how-step {
                 width: 45%;
             }
             .technology-card {
@@ -306,10 +452,10 @@
             .hero-content p {
                 font-size: 1em;
             }
-            .mission-content h2, .services-content h2, .technology-content h2 {
+            .mission-content h2, .expertise-content h2, .how-content h2, .technology-content h2 {
                 font-size: 2em;
             }
-            .mission-card, .service-card {
+            .mission-card, .expertise-card, .how-step {
                 width: 100%;
             }
         }
@@ -321,18 +467,19 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">Golden Share Canada</div>
+            <div class="logo" onclick="scrollToSection('top')">Golden Share Canada</div>
             <nav>
-                <a href="#">Home</a>
-                <a href="#mission">Our Mission</a>
-                <a href="#services">Services</a>
-                <a href="#technology">Technology</a>
-                <a href="#contact">Contact Us</a>
+                <a href="#" onclick="scrollToSection('hero')">Home</a>
+                <a href="#" onclick="scrollToSection('mission')">Our Mission</a>
+                <a href="#" onclick="scrollToSection('expertise')">Our Expertise</a>
+                <a href="#" onclick="scrollToSection('how')">How It Works</a>
+                <a href="#" onclick="scrollToSection('technology')">Technology</a>
+                <a href="#" onclick="scrollToSection('contact')">Contact Us</a>
             </nav>
         </div>
     </header>
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <!-- Particles.js Container -->
         <div id="particles-js"></div>
         <div class="hero-content">
@@ -342,12 +489,13 @@
         </div>
     </section>
     <!-- Mission Section -->
-    <section class="mission-section" id="mission">
+    <section class="mission-section parallax" id="mission">
+        <div class="mission-overlay"></div>
         <div class="mission-content">
-            <h2>Our Mission</h2>
+            <h2 data-aos="fade-down">Our Mission</h2>
             <div class="mission-cards">
                 <!-- Card 1 -->
-                <div class="mission-card" data-aos="fade-up">
+                <div class="mission-card" data-aos="flip-left">
                     <i class="fas fa-lightbulb"></i>
                     <h3>Honoring Entrepreneurs</h3>
                     <p>
@@ -355,7 +503,7 @@
                     </p>
                 </div>
                 <!-- Card 2 -->
-                <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="mission-card" data-aos="flip-left" data-aos-delay="100">
                     <i class="fas fa-cogs"></i>
                     <h3>Empowering You</h3>
                     <p>
@@ -363,7 +511,7 @@
                     </p>
                 </div>
                 <!-- Card 3 -->
-                <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="mission-card" data-aos="flip-left" data-aos-delay="200">
                     <i class="fas fa-handshake"></i>
                     <h3>Your Trusted Partner</h3>
                     <p>
@@ -373,41 +521,95 @@
             </div>
         </div>
     </section>
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <div class="services-content">
-            <h2>Our Services</h2>
-            <div class="services-cards">
-                <!-- Service Card 1 -->
-                <div class="service-card" data-aos="fade-up">
-                    <i class="fas fa-calculator"></i>
-                    <h3>Advanced Taxation</h3>
+    <!-- Our Expertise Section -->
+    <section class="expertise-section" id="expertise">
+        <div class="expertise-content">
+            <h2 data-aos="fade-down">Our Expertise</h2>
+            <div class="expertise-cards">
+                <!-- Expertise Card 1 -->
+                <div class="expertise-card" data-aos="zoom-in">
+                    <i class="fas fa-building"></i>
+                    <h3>Corporate Tax</h3>
                     <p>
-                        Leveraging expertise to optimize your tax strategies, ensuring compliance and maximized returns.
+                        Streamline your corporate tax processes with our expert guidance on CIT, GST/HST, and tax credits, including R&D incentives.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <!-- Expertise Card 2 -->
+                <div class="expertise-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-book"></i>
+                    <h3>Bookkeeping &amp; Accounting</h3>
+                    <p>
+                        Experience effortless, paperless, cloud-based solutions tailored to your business needs for efficient bookkeeping and accounting.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <!-- Expertise Card 3 -->
+                <div class="expertise-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-money-check-alt"></i>
+                    <h3>Payroll Management</h3>
+                    <p>
+                        Benefit from seamless payroll services, from initial setup to regular processing, ensuring accuracy and compliance.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <!-- Expertise Card 4 -->
+                <div class="expertise-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Individual Taxes</h3>
+                    <p>
+                        Receive expert personal tax filing and consulting services for individuals and business owners, maximizing your returns.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <!-- Expertise Card 5 -->
+                <div class="expertise-card" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Company Formation</h3>
+                    <p>
+                        Start your business on the right foot with our comprehensive company formation services, guiding you every step of the way.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <!-- Expertise Card 6 -->
+                <div class="expertise-card" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Accounting &amp; Reporting Setup</h3>
+                    <p>
+                        Implement QuickBooks Online, ensure CRA compliance, and integrate payroll for accurate and timely financial reporting.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How It Works Section -->
+    <section class="how-section" id="how">
+        <div class="how-content">
+            <h2 data-aos="fade-down">How It Works</h2>
+            <div class="how-steps">
+                <!-- Step 1 -->
+                <div class="how-step" data-aos="fade-up">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>1. Contact Us</h3>
+                    <p>
+                        Reach out using your preferred method—fill out our form, give us a call, or schedule a callback.
                     </p>
                 </div>
-                <!-- Service Card 2 -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Cloud Accounting</h3>
+                <!-- Step 2 -->
+                <div class="how-step" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-comments"></i>
+                    <h3>2. Get a Free Consultation</h3>
                     <p>
-                        Real-time access to your financial data anywhere, anytime, utilizing cutting-edge cloud solutions.
+                        Our team will connect with you to discuss your specific needs and tailor our services accordingly.
                     </p>
                 </div>
-                <!-- Service Card 3 -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <!-- Step 3 -->
+                <div class="how-step" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-chart-line"></i>
-                    <h3>Financial Insights</h3>
+                    <h3>3. Grow Your Business</h3>
                     <p>
-                        Transforming data into actionable business strategies to drive informed decision-making.
-                    </p>
-                </div>
-                <!-- Service Card 4 -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Compliance Assurance</h3>
-                    <p>
-                        Staying ahead with evolving regulations and standards to keep you compliant and focused on growth.
+                        Focus on your business growth while we handle your financial management seamlessly.
                     </p>
                 </div>
             </div>
@@ -416,10 +618,10 @@
     <!-- Technology Section -->
     <section class="technology-section" id="technology">
         <div class="technology-content">
-            <h2>Innovative Technology</h2>
+            <h2 data-aos="fade-down">Innovative Technology</h2>
             <div class="technology-cards">
                 <!-- Technology Card 1 -->
-                <div class="technology-card" data-aos="fade-up">
+                <div class="technology-card" data-aos="fade-right">
                     <i class="fas fa-robot"></i>
                     <h3>AI-Powered Analytics</h3>
                     <p>
@@ -427,7 +629,7 @@
                     </p>
                 </div>
                 <!-- Technology Card 2 -->
-                <div class="technology-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="technology-card" data-aos="fade-left" data-aos-delay="100">
                     <i class="fas fa-lock"></i>
                     <h3>Secure Data Handling</h3>
                     <p>
@@ -456,6 +658,8 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- Load AOS Library JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Load GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <!-- Initialize AOS -->
     <script>
         AOS.init({
