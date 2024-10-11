@@ -219,14 +219,399 @@
           opacity: 0.2;
         }
       }
+      /* Parallax Sections */
+      .parallax {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+      }
+      /* Mission Section */
+      .mission-section {
+        background-image: url("https://source.unsplash.com/1600x900/?business,teamwork");
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .mission-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 117, 173, 0.8);
+        z-index: 1;
+      }
+      .mission-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .mission-content h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: #fff;
+        animation: fadeInDown 1s forwards;
+      }
+      .mission-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .mission-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        width: 30%;
+        margin-bottom: 40px;
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .mission-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      }
+      .mission-card::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #0a75ad, #ff6f61);
+        top: 0;
+        left: 0;
+      }
+      .mission-card i {
+        font-size: 3em;
+        color: #ff6f61;
+        margin-bottom: 20px;
+      }
+      .mission-card h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        color: #0a75ad;
+      }
+      .mission-card p {
+        font-size: 1em;
+        color: #333;
+        line-height: 1.6;
+      }
+      .mission-card p span {
+        color: #ff6f61;
+        font-weight: bold;
+      }
+      /* Expertise Section */
+      .expertise-section {
+        background-color: #f5fafd;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .expertise-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .expertise-content h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: #0a75ad;
+        animation: fadeInDown 1s forwards;
+      }
+      .expertise-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .expertise-card {
+        background-color: #fff;
+        width: 30%;
+        margin-bottom: 40px;
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .expertise-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      }
+      .expertise-card::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #0a75ad, #ff6f61);
+        top: 0;
+        left: 0;
+      }
+      .expertise-card i {
+        font-size: 3em;
+        color: #ff6f61;
+        margin-bottom: 20px;
+      }
+      .expertise-card h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        color: #0a75ad;
+      }
+      .expertise-card p {
+        font-size: 1em;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+      .expertise-card a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0a75ad;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .expertise-card a:hover {
+        background-color: #ff6f61;
+      }
+      /* How It Works Section */
+      .how-section {
+        background-image: url("https://source.unsplash.com/1600x900/?business,finance");
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+      }
+      .how-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 117, 173, 0.8);
+        z-index: 1;
+      }
+      .how-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .how-content h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: #fff;
+        animation: fadeInDown 1s forwards;
+      }
+      .how-steps {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
+      }
+      .how-step {
+        background-color: rgba(255, 255, 255, 0.9);
+        width: 30%;
+        margin-bottom: 40px;
+        padding: 40px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .how-step:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      }
+      .how-step i {
+        font-size: 3em;
+        color: #ff6f61;
+        margin-bottom: 20px;
+      }
+      .how-step h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        color: #0a75ad;
+      }
+      .how-step p {
+        font-size: 1em;
+        color: #333;
+        line-height: 1.6;
+      }
+      /* Technology Section */
+      .technology-section {
+        background-color: #f5fafd;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .technology-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .technology-content h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: #0a75ad;
+        animation: fadeInDown 1s forwards;
+      }
+      .technology-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .technology-card {
+        background-color: #fff;
+        width: 45%;
+        margin-bottom: 40px;
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .technology-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      }
+      .technology-card::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #0a75ad, #ff6f61);
+        top: 0;
+        left: 0;
+      }
+      .technology-card i {
+        font-size: 3em;
+        color: #ff6f61;
+        margin-bottom: 20px;
+      }
+      .technology-card h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        color: #0a75ad;
+      }
+      .technology-card p {
+        font-size: 1em;
+        color: #666;
+        line-height: 1.6;
+      }
+      /* Footer Styles */
+      footer {
+        background: linear-gradient(-45deg, #0a75ad, #ff6f61, #0a75ad);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: #fff;
+        padding: 40px 20px;
+      }
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .footer-content p {
+        margin-bottom: 20px;
+        font-size: 1em;
+      }
+      .social-icons a {
+        margin: 0 10px;
+        color: #fff;
+        font-size: 1.5em;
+        transition: color 0.3s ease;
+      }
+      .social-icons a:hover {
+        color: #333;
+      }
       /* Responsive Styles */
+      @media (max-width: 992px) {
+        .mission-card,
+        .expertise-card,
+        .how-step {
+          width: 45%;
+        }
+        .technology-card {
+          width: 100%;
+        }
+      }
       @media (max-width: 768px) {
-        .message-content {
-          max-width: 100%;
+        nav {
+          float: none;
+          text-align: center;
+          margin-top: 10px;
+        }
+        .logo {
+          float: none;
+          text-align: center;
+        }
+        .hero-chat-container {
+          padding: 10px;
+        }
+        .mission-content h2,
+        .expertise-content h2,
+        .how-content h2,
+        .technology-content h2 {
+          font-size: 2em;
+        }
+        .mission-card,
+        .expertise-card,
+        .how-step {
+          width: 100%;
         }
         .assistant-avatar,
         .user-avatar {
           display: none;
+        }
+      }
+      /* Fade-in Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
     </style>
@@ -282,7 +667,7 @@
         <h2 data-aos="fade-down">Our Mission</h2>
         <div class="mission-cards">
           <!-- Card 1 -->
-          <div class="mission-card" data-aos="flip-left">
+          <div class="mission-card" data-aos="fade-up">
             <i class="fas fa-lightbulb"></i>
             <h3>Honoring Entrepreneurs</h3>
             <p>
@@ -292,7 +677,7 @@
             </p>
           </div>
           <!-- Card 2 -->
-          <div class="mission-card" data-aos="flip-left" data-aos-delay="100">
+          <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
             <i class="fas fa-cogs"></i>
             <h3>Empowering You</h3>
             <p>
@@ -303,7 +688,7 @@
             </p>
           </div>
           <!-- Card 3 -->
-          <div class="mission-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
             <i class="fas fa-handshake"></i>
             <h3>Your Trusted Partner</h3>
             <p>
@@ -385,7 +770,8 @@
       </div>
     </section>
     <!-- How It Works Section -->
-    <section class="how-section" id="how">
+    <section class="how-section parallax" id="how">
+      <div class="how-overlay"></div>
       <div class="how-content">
         <h2 data-aos="fade-down">How It Works</h2>
         <div class="how-steps">
@@ -449,6 +835,7 @@
         </div>
       </div>
     </section>
+    <!-- Footer -->
     <footer id="contact">
       <div class="footer-content">
         <p>&copy; 2023 Golden Share Canada. All rights reserved.</p>
