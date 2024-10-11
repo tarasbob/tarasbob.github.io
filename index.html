@@ -108,11 +108,11 @@
         }
         /* Mission Section */
         .mission-section {
-            background-color: #e6f2f7;
+            background-color: #f9f9f9;
             padding: 60px 20px;
         }
         .mission-content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
@@ -121,96 +121,141 @@
             margin-bottom: 40px;
             color: #0a75ad;
         }
-        .mission-paragraph {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards;
-            margin-bottom: 40px;
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: #333;
-        }
-        .mission-paragraph:nth-child(1) {
-            animation-delay: 0.3s;
-        }
-        .mission-paragraph:nth-child(2) {
-            animation-delay: 0.6s;
-        }
-        .mission-paragraph:nth-child(3) {
-            animation-delay: 0.9s;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        /* Main Content Styles */
-        main {
-            padding: 50px 20px;
-            background-color: #f9f9f9;
-        }
-        .section {
-            max-width: 1200px;
-            margin: 0 auto 50px auto;
-        }
-        .section h2 {
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            color: #0a75ad;
-            text-align: center;
-        }
-        .services, .technology {
+        .mission-cards {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        .service-item, .tech-item {
+        .mission-card {
             background-color: #fff;
-            width: 48%;
+            width: 30%;
             margin-bottom: 40px;
-            padding: 30px;
+            padding: 30px 20px;
             border-radius: 10px;
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
-        .service-item:hover, .tech-item:hover {
+        .mission-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 25px rgba(0,0,0,0.2);
         }
-        .service-item h3, .tech-item h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
+        .mission-card i {
+            font-size: 3em;
             color: #ff6f61;
+            margin-bottom: 20px;
         }
-        .service-item p, .tech-item p {
+        .mission-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #0a75ad;
+        }
+        .mission-card p {
             font-size: 1em;
             color: #666;
             line-height: 1.6;
         }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 111, 97, 0.95);
-            color: #fff;
-            transition: left 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        .mission-card p span {
+            color: #ff6f61;
+            font-weight: bold;
+        }
+        /* Services Section */
+        .services-section {
+            background-color: #e6f2f7;
+            padding: 60px 20px;
+        }
+        .services-content {
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
+        }
+        .services-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #0a75ad;
+        }
+        .services-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .service-card {
+            background-color: #fff;
+            width: 30%;
+            margin-bottom: 40px;
+            padding: 30px 20px;
             border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
-        .service-item:hover .overlay, .tech-item:hover .overlay {
-            left: 0;
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
         }
-        .overlay p {
+        .service-card i {
+            font-size: 3em;
+            color: #ff6f61;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #0a75ad;
+        }
+        .service-card p {
             font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+        }
+        /* Technology Section */
+        .technology-section {
+            background-color: #f9f9f9;
+            padding: 60px 20px;
+        }
+        .technology-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .technology-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #0a75ad;
+        }
+        .technology-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .technology-card {
+            background-color: #fff;
+            width: 45%;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .technology-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        .technology-card i {
+            font-size: 3em;
+            color: #ff6f61;
+            margin-bottom: 20px;
+        }
+        .technology-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #0a75ad;
+        }
+        .technology-card p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
         }
         /* Footer Styles */
         footer {
@@ -238,7 +283,10 @@
         }
         /* Responsive Styles */
         @media (max-width: 992px) {
-            .service-item, .tech-item {
+            .mission-card, .service-card {
+                width: 45%;
+            }
+            .technology-card {
                 width: 100%;
             }
         }
@@ -253,19 +301,21 @@
                 text-align: center;
             }
             .hero-content h1 {
-                font-size: 2.5em;
+                font-size: 2em;
             }
             .hero-content p {
                 font-size: 1em;
             }
-            .mission-content h2 {
+            .mission-content h2, .services-content h2, .technology-content h2 {
                 font-size: 2em;
             }
-            .mission-paragraph {
-                font-size: 1em;
+            .mission-card, .service-card {
+                width: 100%;
             }
         }
     </style>
+    <!-- Load AOS Library CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -295,74 +345,98 @@
     <section class="mission-section" id="mission">
         <div class="mission-content">
             <h2>Our Mission</h2>
-            <p class="mission-paragraph">
-                At Golden Share Canada, we honor entrepreneurs as the visionary heroes propelling our nation's progress—fueling innovation, creating opportunities, and transforming industries. Our unwavering mission is to empower you by expertly managing all your accounting and financial needs with absolute precision and reliability.
-            </p>
-            <p class="mission-paragraph">
-                Leveraging our profound expertise in taxation, advanced accounting technologies, cloud solutions, and industry-specific financial strategies, we transform complex financial data into clear, actionable insights. We ensure full compliance with ever-evolving regulations, allowing you to dedicate your energy entirely to your core mission and business growth.
-            </p>
-            <p class="mission-paragraph">
-                As your trusted partner, Golden Share Canada provides you with the confidence to make informed decisions, secure in the knowledge that your finances are managed by consummate professionals. Together, we will forge a stronger future—enabling you to focus on what truly matters: amplifying your impact and achieving your entrepreneurial vision.
-            </p>
+            <div class="mission-cards">
+                <!-- Card 1 -->
+                <div class="mission-card" data-aos="fade-up">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Honoring Entrepreneurs</h3>
+                    <p>
+                        At Golden Share Canada, we honor <span>entrepreneurs</span> as the visionary heroes propelling our nation's progress—fueling innovation, creating opportunities, and transforming industries.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Empowering You</h3>
+                    <p>
+                        Leveraging our profound expertise in <span>taxation</span>, advanced accounting technologies, <span>cloud solutions</span>, and industry-specific financial strategies, we transform complex financial data into clear, actionable insights.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Your Trusted Partner</h3>
+                    <p>
+                        As your <span>trusted partner</span>, Golden Share Canada provides you with the confidence to make informed decisions, secure in the knowledge that your finances are managed by consummate professionals.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
-    <!-- Main Content -->
-    <main>
-        <!-- Services Section -->
-        <div class="section" id="services">
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="services-content">
             <h2>Our Services</h2>
-            <div class="services">
-                <div class="service-item">
+            <div class="services-cards">
+                <!-- Service Card 1 -->
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fas fa-calculator"></i>
                     <h3>Advanced Taxation</h3>
-                    <p>Leveraging expertise to optimize your tax strategies.</p>
-                    <div class="overlay">
-                        <p>Our taxation services ensure compliance and maximized returns.</p>
-                    </div>
+                    <p>
+                        Leveraging expertise to optimize your tax strategies, ensuring compliance and maximized returns.
+                    </p>
                 </div>
-                <div class="service-item">
+                <!-- Service Card 2 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-cloud"></i>
                     <h3>Cloud Accounting</h3>
-                    <p>Real-time access to your financial data anywhere, anytime.</p>
-                    <div class="overlay">
-                        <p>Utilize cutting-edge cloud solutions for seamless accounting.</p>
-                    </div>
+                    <p>
+                        Real-time access to your financial data anywhere, anytime, utilizing cutting-edge cloud solutions.
+                    </p>
                 </div>
-                <div class="service-item">
+                <!-- Service Card 3 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-chart-line"></i>
                     <h3>Financial Insights</h3>
-                    <p>Transforming data into actionable business strategies.</p>
-                    <div class="overlay">
-                        <p>Get clear insights to drive informed decision-making.</p>
-                    </div>
+                    <p>
+                        Transforming data into actionable business strategies to drive informed decision-making.
+                    </p>
                 </div>
-                <div class="service-item">
+                <!-- Service Card 4 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-shield-alt"></i>
                     <h3>Compliance Assurance</h3>
-                    <p>Staying ahead with evolving regulations and standards.</p>
-                    <div class="overlay">
-                        <p>We keep you compliant, so you can focus on growth.</p>
-                    </div>
+                    <p>
+                        Staying ahead with evolving regulations and standards to keep you compliant and focused on growth.
+                    </p>
                 </div>
             </div>
         </div>
-        <!-- Technology Section -->
-        <div class="section" id="technology">
+    </section>
+    <!-- Technology Section -->
+    <section class="technology-section" id="technology">
+        <div class="technology-content">
             <h2>Innovative Technology</h2>
-            <div class="technology">
-                <div class="tech-item">
+            <div class="technology-cards">
+                <!-- Technology Card 1 -->
+                <div class="technology-card" data-aos="fade-up">
+                    <i class="fas fa-robot"></i>
                     <h3>AI-Powered Analytics</h3>
-                    <p>Harnessing AI for predictive financial modeling.</p>
-                    <div class="overlay">
-                        <p>Stay ahead with forecasts and trend analysis.</p>
-                    </div>
+                    <p>
+                        Harnessing AI for predictive financial modeling to stay ahead with forecasts and trend analysis.
+                    </p>
                 </div>
-                <div class="tech-item">
+                <!-- Technology Card 2 -->
+                <div class="technology-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-lock"></i>
                     <h3>Secure Data Handling</h3>
-                    <p>Top-tier security measures to protect your information.</p>
-                    <div class="overlay">
-                        <p>Your data's security is our utmost priority.</p>
-                    </div>
+                    <p>
+                        Top-tier security measures to protect your information; your data's security is our utmost priority.
+                    </p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
@@ -380,10 +454,15 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <!-- Load FontAwesome for Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <!-- Load Waypoints for Scroll Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <!-- Load jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Load AOS Library JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
     <script>
         // Initialize Particles.js
         particlesJS("particles-js", {
@@ -455,19 +534,7 @@
         document.querySelector('.logo').addEventListener('click', function() {
             alert('You found the golden share!');
         });
-        // Animate Mission Paragraphs on Scroll
-        $(document).ready(function() {
-            $('.mission-paragraph').each(function() {
-                var element = this;
-                var waypoint = new Waypoint({
-                    element: element,
-                    handler: function() {
-                        $(element).addClass('animated');
-                    },
-                    offset: '80%'
-                });
-            });
-        });
     </script>
 </body>
 </html>
+
